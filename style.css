@@ -1,0 +1,128 @@
+/* 🔤 Fonte moderna (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+    padding: 20px;
+}
+
+/* 🧾 CARD DO PEDIDO */
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 25px;
+    border-radius: 16px;
+
+    /* efeito mais moderno */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    backdrop-filter: blur(8px);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ✨ efeito hover */
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+/* 🏷️ Títulos */
+h1 {
+    text-align: center;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #6a1b9a;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 20px;
+    color: #444;
+    font-weight: 500;
+}
+
+/* 📄 Texto */
+p {
+    line-height: 1.6;
+    color: #555;
+}
+
+/* 📦 Lista de produtos */
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+li {
+    background: #f3f4f6;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+
+    transition: background 0.2s;
+}
+
+li:hover {
+    background: #e0e7ff;
+}
+
+/* 💰 Total destacado */
+.total {
+    margin-top: 20px;
+    padding: 15px;
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #333;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    background: #ddd;
+}
+
+/* 📱 Responsivo */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .total {
+        font-size: 18px;
+    }
+}
