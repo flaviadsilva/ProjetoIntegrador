@@ -29,22 +29,19 @@ $totalPedidos  = isset($_SESSION['pedidos'])  ? count($_SESSION['pedidos'])  : 0
     <div class="cards">
 
         <div class="card">
-            <h2>👤 Clientes</h2>
-            <p>Total cadastrados:</p>
+            <h2>Clientes</h2>
             <span><?= $totalClientes ?></span>
             <a href="clientes.php">Ver clientes</a>
         </div>
 
         <div class="card">
-            <h2>📦 Produtos</h2>
-            <p>Total cadastrados:</p>
+            <h2>Produtos</h2>
             <span><?= $totalProdutos ?></span>
             <a href="produtos.php">Ver produtos</a>
         </div>
 
         <div class="card">
-            <h2>🧾 Pedidos</h2>
-            <p>Total criados:</p>
+            <h2>Pedidos</h2>
             <span><?= $totalPedidos ?></span>
             <a href="pedidos.php">Ver pedidos</a>
         </div>
