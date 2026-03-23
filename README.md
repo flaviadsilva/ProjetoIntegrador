@@ -46,23 +46,30 @@ O sistema simula o funcionamento básico de uma loja, permitindo o gerenciamento
 ## 📂 Estrutura do Projeto
 
 ```
-projeto_loja/
+📁 PROJETOINTEGRADOR/
 │
-├── index.php
+├── 📁 config/
+│   └── database.php
+│
+├── 📁 dao/
+│   ├── ClienteDAO.php
+│   ├── PedidoDAO.php
+│   └── ProdutoDAO.php
+│
+├── 📁 includes/
+│
+├── 📁 models/
+│   ├── Cliente.php
+│   ├── Pedido.php
+│   └── Produto.php
+│
 ├── clientes.php
-├── produtos.php
+├── index.php
 ├── pedidos.php
-├── style.css
-│
-├── includes/
-│   └── menu.php
-│
-└── classes/
-    ├── Cliente.php
-    ├── Produto.php
-    └── Pedido.php
+├── produtos.php
+├── README.md
+└── style.css
 ```
-
 ---
 
 ## ⚙️ Como Executar
