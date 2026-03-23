@@ -1,41 +1,72 @@
 <?php
 
-// Importa conexão
-require_once "config/Database.php";
-
-// Importa model
-require_once "models/Cliente.php";
+require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . "/../models/Cliente.php";
 
 class ClienteDAO {
 
-    // Atributo que armazenará a conexão
     private $conn;
 
-    // Construtor cria conexão automaticamente
     public function __construct() {
-
-        // Instancia Database
         $database = new Database();
-
-        // Obtém conexão
         $this->conn = $database->getConnection();
     }
 
-    // Método responsável por inserir dados
     public function inserir(Cliente $cliente) {
-
-        // SQL com parâmetros nomeados
-        $sql = "INSERT INTO clientes (nome, email)
-                VALUES (:nome, :email)";
-
-        // Prepara a query
+        $sql = "INSERT INTO clientes (nome, email) VALUES (:nome, :email)";
         $stmt = $this->conn->prepare($sql);
-
-        // Associa valores aos parâmetros
         $stmt->bindValue(":nome", $cliente->getNome());
         $stmt->bindValue(":email", $cliente->getEmail());
-
-        // Executa e retorna verdadeiro ou falso
         return $stmt->execute();
+    }
+
+    public function listar() {
+        $sql = "SELECT * FROM clientes ORDER BY id DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        $clientes = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $cliente = new Cliente($row['id'], $row['nome'], $row['email']);
+            $clientes[] = $cliente;
+        }
+        return $clientes;
+    }
+
+    public function buscarPorId($id) {
+        $sql = "SELECT * FROM clientes WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":id", $id);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row) {
+            return new Cliente($row['id'], $row['nome'], $row['email']);
+        }
+        return null;
+    }
+
+    public function atualizar(Cliente $cliente) {
+        $sql = "UPDATE clientes SET nome = :nome, email = :email WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":nome", $cliente->getNome());
+        $stmt->bindValue(":email", $cliente->getEmail());
+        $stmt->bindValue(":id", $cliente->getId());
+        return $stmt->execute();
+    }
+
+    public function excluir($id) {
+        $sql = "DELETE FROM clientes WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":id", $id);
+        return $stmt->execute();
+    }
+
+    public function contar() {
+        $sql = "SELECT COUNT(*) as total FROM clientes";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['total'];
     }
 }

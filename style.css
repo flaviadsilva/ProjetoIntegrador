@@ -1,128 +1,369 @@
-/* 🔤 Fonte moderna (Google Fonts) */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    margin: 0;
-    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    background: #fafafa;
+    color: #1a1a1a;
+    min-height: 100vh;
 }
 
-/* 🧾 CARD DO PEDIDO */
-.container {
-    background: rgba(255, 255, 255, 0.95);
-    max-width: 650px;
-    margin: 25px auto;
-    padding: 25px;
-    border-radius: 16px;
-
-    /* efeito mais moderno */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    backdrop-filter: blur(8px);
-
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* ── Navbar ── */
+.navbar {
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-/* ✨ efeito hover */
-.container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-}
-
-/* 🏷️ Títulos */
-h1 {
-    text-align: center;
+.navbar-brand {
     font-weight: 600;
-    color: #333;
-    margin-bottom: 10px;
+    font-size: 16px;
+    color: #1a1a1a;
+    text-decoration: none;
+    letter-spacing: -0.3px;
 }
 
-h2 {
-    color: #6a1b9a;
-    margin-bottom: 10px;
+.navbar-links {
+    display: flex;
+    gap: 32px;
 }
 
-h3 {
-    margin-top: 20px;
-    color: #444;
-    font-weight: 500;
+.navbar-links a {
+    text-decoration: none;
+    color: #737373;
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.15s;
+    padding: 16px 0;
+    border-bottom: 2px solid transparent;
 }
 
-/* 📄 Texto */
-p {
-    line-height: 1.6;
-    color: #555;
+.navbar-links a:hover,
+.navbar-links a.active {
+    color: #1a1a1a;
+    border-bottom-color: #1a1a1a;
 }
 
-/* 📦 Lista de produtos */
-ul {
-    padding-left: 0;
-    list-style: none;
+/* ── Layout ── */
+.page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 24px;
 }
 
-li {
-    background: #f3f4f6;
-    padding: 10px 15px;
-    margin-bottom: 8px;
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    color: #1a1a1a;
+}
+
+.page-header p {
+    color: #737373;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* ── Cards do Dashboard ── */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
     border-radius: 8px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s;
+}
 
+.stat-card:hover {
+    border-color: #b3b3b3;
+}
+
+.stat-card h3 {
+    font-size: 12px;
+    font-weight: 500;
+    color: #737373;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.stat-card .number {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a1a1a;
+    letter-spacing: -1px;
+}
+
+/* ── Tabelas ── */
+.table-wrapper {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #fafafa;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #737373;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background: #fafafa;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 48px 16px;
+    color: #a3a3a3;
+    font-size: 14px;
+}
+
+/* ── Formularios ── */
+.form-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.form-card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #525252;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 8px 12px;
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+    background: #fff;
+    transition: border-color 0.15s;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #1a1a1a;
+}
+
+.form-group input::placeholder {
+    color: #a3a3a3;
+}
+
+.form-group select[multiple] {
+    min-height: 120px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #333;
+}
+
+.btn-danger {
+    color: #dc2626;
+    background: none;
+    padding: 4px 8px;
+    font-size: 13px;
+}
+
+.btn-danger:hover {
+    background: #fef2f2;
+}
+
+.btn-edit {
+    color: #2563eb;
+    background: none;
+    padding: 4px 8px;
+    font-size: 13px;
+}
+
+.btn-edit:hover {
+    background: #eff6ff;
+}
+
+.actions {
+    display: flex;
+    gap: 4px;
+}
+
+/* ── Alertas ── */
+.alert {
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.alert-success {
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.alert-error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* ── Pedido Detail ── */
+.detail-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+.detail-row {
     display: flex;
     justify-content: space-between;
-
-    transition: background 0.2s;
+    padding: 8px 0;
+    font-size: 14px;
 }
 
-li:hover {
-    background: #e0e7ff;
+.detail-label {
+    color: #737373;
 }
 
-/* 💰 Total destacado */
-.total {
-    margin-top: 20px;
-    padding: 15px;
-    background: linear-gradient(135deg, #43cea2, #185a9d);
-    color: white;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 20px;
+.detail-value {
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.total-row {
+    border-top: 1px solid #e5e5e5;
+    margin-top: 8px;
+    padding-top: 12px;
+    font-size: 16px;
     font-weight: 600;
 }
-.menu {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
 
-.menu a {
-    text-decoration: none;
-    background: white;
-    padding: 10px 15px;
-    border-radius: 8px;
-    color: #333;
-    font-weight: 500;
-    transition: 0.2s;
-}
-
-.menu a:hover {
-    background: #ddd;
-}
-
-/* 📱 Responsivo */
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
+/* ── Responsivo ── */
+@media (max-width: 640px) {
+    .navbar {
+        padding: 0 16px;
     }
 
-    .container {
-        padding: 18px;
+    .navbar-links {
+        gap: 16px;
     }
 
-    h1 {
-        font-size: 20px;
+    .navbar-links a {
+        font-size: 13px;
     }
 
-    .total {
-        font-size: 18px;
+    .page {
+        padding: 24px 16px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 10px 12px;
     }
 }

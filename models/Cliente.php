@@ -1,44 +1,22 @@
 <?php
 
-// Classe representa a tabela clientes
 class Cliente {
-
-    // Atributos privados (Encapsulamento)
     private $id;
     private $nome;
     private $email;
 
-    // Construtor é executado ao criar o objeto
-    public function __construct($id, $nome, $email) {
-
-        // $this representa o próprio objeto
+    public function __construct($id = null, $nome = null, $email = null) {
         $this->id = $id;
         $this->nome = $nome;
         $this->email = $email;
     }
 
-    // Getter retorna o ID
-    public function getId() {
-        return $this->id;
-    }
+    public function getId() { return $this->id; }
+    public function setId($id) { $this->id = $id; }
 
-    // Getter retorna o nome
-    public function getNome() {
-        return $this->nome;
-    }
+    public function getNome() { return $this->nome; }
+    public function setNome($nome) { $this->nome = $nome; }
 
-    // Getter retorna o email
-    public function getEmail() {
-        return $this->email;
-    }
-
-    // Setter altera o nome
-    public function setNome($nome) {
-        $this->nome = $nome;
-    }
-
-    // Setter altera o email
-    public function setEmail($email) {
-        $this->email = $email;
-    }
+    public function getEmail() { return $this->email; }
+    public function setEmail($email) { $this->email = $email; }
 }

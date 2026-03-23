@@ -1,53 +1,50 @@
 <?php
-session_start();
+require_once "dao/ClienteDAO.php";
+require_once "dao/ProdutoDAO.php";
+require_once "dao/PedidoDAO.php";
 
-// garantir dados
-$totalClientes = isset($_SESSION['clientes']) ? count($_SESSION['clientes']) : 0;
-$totalProdutos = isset($_SESSION['produtos']) ? count($_SESSION['produtos']) : 0;
-$totalPedidos  = isset($_SESSION['pedidos'])  ? count($_SESSION['pedidos'])  : 0;
+$clienteDAO = new ClienteDAO();
+$produtoDAO = new ProdutoDAO();
+$pedidoDAO = new PedidoDAO();
+
+$totalClientes = $clienteDAO->contar();
+$totalProdutos = $produtoDAO->contar();
+$totalPedidos = $pedidoDAO->contar();
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Sistema de Loja</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Loja</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <?php include "includes/menu.php"; ?>
 
-<div class="container">
-
-    <h1>🛒 Sistema de Loja</h1>
-
-    <p class="subtitulo">
-        Gerencie clientes, produtos e pedidos de forma simples e organizada.
-    </p>
-
-    <div class="cards">
-
-        <div class="card">
-            <h2>Clientes</h2>
-            <span><?= $totalClientes ?></span>
-            <a href="clientes.php">Ver clientes</a>
-        </div>
-
-        <div class="card">
-            <h2>Produtos</h2>
-            <span><?= $totalProdutos ?></span>
-            <a href="produtos.php">Ver produtos</a>
-        </div>
-
-        <div class="card">
-            <h2>Pedidos</h2>
-            <span><?= $totalPedidos ?></span>
-            <a href="pedidos.php">Ver pedidos</a>
-        </div>
-
+<div class="page">
+    <div class="page-header">
+        <h1>Dashboard</h1>
+        <p>Visao geral do sistema</p>
     </div>
 
+    <div class="stats">
+        <a href="clientes.php" class="stat-card">
+            <h3>Clientes</h3>
+            <div class="number"><?= $totalClientes ?></div>
+        </a>
+
+        <a href="produtos.php" class="stat-card">
+            <h3>Produtos</h3>
+            <div class="number"><?= $totalProdutos ?></div>
+        </a>
+
+        <a href="pedidos.php" class="stat-card">
+            <h3>Pedidos</h3>
+            <div class="number"><?= $totalPedidos ?></div>
+        </a>
+    </div>
 </div>
 
 </body>
