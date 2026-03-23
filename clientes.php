@@ -1,65 +1,41 @@
 <?php
 
-// 🔥 PRIMEIRO carrega a classe
-require_once "classes/Cliente.php";
+// Importações
+require_once "dao/ClienteDAO.php";
+require_once "models/Cliente.php";
 
-// 🔥 DEPOIS inicia a sessão
-session_start();
+// Cria objeto DAO
+$clienteDAO = new ClienteDAO();
 
-// 🔥 garante array
-$_SESSION['clientes'] = $_SESSION['clientes'] ?? [];
+// Verifica envio do formulário
+if(isset($_POST['salvar'])) {
 
-// 🔥 cadastro
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Captura dados enviados
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
 
-    $nome = $_POST['nome'] ?? '';
-    $email = $_POST['email'] ?? '';
+    // Cria objeto Cliente
+    $cliente = new Cliente(null, $nome, $email);
 
-    if (!empty($nome) && !empty($email)) {
-        $id = count($_SESSION['clientes']) + 1;
-
-        $cliente = new Cliente($id, $nome, $email);
-
-        $_SESSION['clientes'][] = $cliente;
+    // Insere no banco
+    if($clienteDAO->inserir($cliente)) {
+        echo "Cliente cadastrado com sucesso!";
+    } else {
+        echo "Erro ao cadastrar!";
     }
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<?php include "includes/menu.php"; ?>
-
-<div class="container">
-
-<h2>Cadastro de Cliente</h2>
+<h2>Cadastro de Clientes</h2>
 
 <form method="POST">
-    <input type="text" name="nome" placeholder="Nome" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <button type="submit">Cadastrar</button>
+
+    Nome: <br>
+    <input type="text" name="nome" required><br><br>
+
+    Email: <br>
+    <input type="email" name="email" required><br><br>
+
+    <button type="submit" name="salvar">Salvar</button>
+
 </form>
-
-<h3>Lista de Clientes</h3>
-
-<?php
-if (empty($_SESSION['clientes'])) {
-    echo "<p>Nenhum cliente cadastrado.</p>";
-} else {
-    foreach ($_SESSION['clientes'] as $c) {
-        echo "<p>";
-        echo $c->getNome() . " - " . $c->getEmail();
-        echo "</p>";
-    }
-}
-?>
-
-</div>
-
-</body>
-</html>
